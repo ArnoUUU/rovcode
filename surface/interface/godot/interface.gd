@@ -15,14 +15,15 @@ var power_adjust_hold_time := 0.0
 var power_repeat_delay := 0.2  # Seconds between repeated steps
 var manipulator_repeat_delay := 0.5
 var manipulator_index = 1
-var totalManipulators = 5
+var totalManipulators = 6
 
 var mode_names = {
 	1: "Dual Axis Manipulator Mode",
 	2: "Single Toggle Manipulator Mode Top",
 	3: "Single Toggle Manipulator Mode Bottom",
 	4: "Thermistor Manipulator Mode",
-	5: "Syringe Manipulator Mode"
+	5: "Syringe Manipulator Mode",
+	6: "LAIDbACK Single Axis Mode Bottom",
 }
 
 var light_on = false
@@ -315,7 +316,7 @@ func _process(delta):
 
 	var OPEN_PWM = 75
 	var PWM_COEFFICIENT = 1
-	if manipulator_index == 1:
+	if manipulator_index == 1 or manipulator_index == 6:
 		if Input.is_action_pressed("manipulator_close"):
 			bottom_manipulator_pwm -= OPEN_PWM * PWM_COEFFICIENT * 1.7
 		if Input.is_action_pressed("manipulator_open"):
